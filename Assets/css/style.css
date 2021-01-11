@@ -1,0 +1,22 @@
+html{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body{
+
+}
+
+.btn-csv{
+    background-color: royalblue;
+    color: white;
+    font-size: 24px;
+    padding: 20px;
+}
+
+.btn-csv:hover{
+    background-color: cadetblue;
+    color: red;
+}
+

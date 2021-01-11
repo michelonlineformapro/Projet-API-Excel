@@ -1,0 +1,17 @@
+{
+    "name": "m.michel/api-ski",
+    "description": "Api gestion de comp\u0000tition de Ski de piste",
+    "require": {
+        "automattic/jetpack-autoloader": "dev-master",
+      "ext-pdo": "*",
+        "phpoffice/phpspreadsheet": "dev-master",
+      "ext-mysqli": "*"
+    },
+    "authors": [
+        {
+            "name": "m.michel",
+            "email": "m.michel@onlineformapro.com"
+        }
+    ],
+    "minimum-stability": "dev"
+}

@@ -1,0 +1,171 @@
+        <h1>COMPETITION SKI</h1>
+        <table style='width: 100%; border: solid 1px darkred' >
+    <thead>
+        <tr>
+            <th>Nom de la station</th>
+            <th>Date de l'épreuve</th>
+            <th>Nom des participants</th>
+            <th>Catégorie de l'épreuve</th>
+            <th>Temps des particpants</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>Les 2 Alpes</td>
+            <td>25/12/2020</td>
+            <td>Marc BONOT, Tony MONTANA, Robert RAPIDE, Jerome LAGLISSE</td>
+            <td>Snowboard</td>
+            <td>1 min 24 s, 1 min 45 s, 3 min 25s, 1 min 12s</td>
+        </tr>
+    </tbody>
+</table>
+
+      $datas = array(
+            "0" => array(
+                "nom_station" => "Les 2 Alpes",
+                "date_epreuve" => "2020-12-01 13:00:00",
+                "id_participant" => array(
+                    "nom" => "LAGLISSE",
+                    "prenom" => "Robert",
+                    "date_naissance" => "1975-01-15 03:15:12",
+                    "email" => "robert@gmail.com",
+                    "photo" => "../Assets/img/robert.png",
+                ),
+                "id_categorie" => "1",
+                "temps" => 1.25
+            ),
+            "1" => array(
+                "nom_station" => "Les 2 Alpes",
+                "date_epreuve" => "2020-12-01 13:00:00",
+                "id_participant" => array(
+                    "nom" => "PATINGLACE",
+                    "prenom" => "Sophie",
+                    "date_naissance" => "1984-04-24 22:25:45",
+                    "email" => "sophie@gmail.com",
+                    "photo" => "../Assets/img/sophie.jpg",
+                ),
+                "id_categorie" => "1",
+                "temps" => 1.12563
+            ),
+        );
+
+
+          <table class="table-container">
+                <tr>
+                    <td><?= fputcsv($output, $datas); ?></td>
+                </tr>
+            </table>
+
+            requete inner join
+                    $sql = "SELECT * from epreuve INNER JOIN participant ON participant.id = epreuve.id_participant INNER JOIN categories ON categories.id = epreuve.id_categorie INNER JOIN passage ON passage.id = epreuve.id_temps";
+
+
+                    last essai
+
+                    header('Content-Type: text/csv');
+        header('Content-Disposition: attachment; filename="competition-ski.csv"');
+
+        $csv = fopen("php://output", 'w');
+        fputcsv($csv, $req);
+        foreach ($req as $row) {
+            fputcsv($csv, $row);
+        }
+        fclose($csv);
+
+
+        /////////////////////////CA MACHE MAIS DANS UNE SEULE CELULE//////////////
+        6
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+<?php
+ 
+//Our MySQL connection details.
+$host = 'localhost';
+$user = 'root';
+$password = '';
+$database = 'test';
+ 
+//Connect to MySQL using PDO.
+$pdo = new PDO("mysql:host=$host;dbname=$database", $user, $password);
+ 
+//Create our SQL query.
+$sql = "SELECT * FROM my_table_name LIMIT 20";
+ 
+//Prepare our SQL query.
+$statement = $pdo->prepare($sql);
+ 
+//Executre our SQL query.
+$statement->execute();
+ 
+//Fetch all of the rows from our MySQL table.
+$rows = $statement->fetchAll(PDO::FETCH_ASSOC);
+ 
+//Get the column names.
+$columnNames = array();
+if(!empty($rows)){
+    //We only need to loop through the first row of our result
+    //in order to collate the column names.
+    $firstRow = $rows[0];
+    foreach($firstRow as $colName => $val){
+        $columnNames[] = $colName;
+    }
+}
+ 
+//Setup the filename that our CSV will have when it is downloaded.
+$fileName = 'mysql-export.csv';
+ 
+//Set the Content-Type and Content-Disposition headers to force the download.
+header('Content-Type: application/excel');
+header('Content-Disposition: attachment; filename="' . $fileName . '"');
+ 
+//Open up a file pointer
+$fp = fopen('php://output', 'w');
+ 
+//Start off by writing the column names to the file.
+fputcsv($fp, $columnNames);
+ 
+//Then, loop through the rows and write them to the CSV file.
+foreach ($rows as $row) {
+    fputcsv($fp, $row);
+}
+ 
+//Close the file pointer.
+fclose($fp);...........................................................................
+
+    $sql = "SELECT `nom`,`prenom`,`sexe`,`email`,`departement`,`date_naissance`,`date_jour`,`age`, Year(`date_jour`) - Year(`date_naissance`) + (Format(`date_naissance`, 'mmdd') > Format(`date_jour`, 'mmdd')) FROM etudiants";

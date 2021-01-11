@@ -1,0 +1,27 @@
+        array_walk_recursive($_POST, function(&$item, $k) {
+                 $this->$k = str_replace(array('\'', '"'), '',
+stripslashes(urldecode($item)));
+         });
+
+
+
+             $(document).ready(function (){
+        //Instance de la Classe DataTable
+        $("#ski-table").DataTable({
+            select: true,
+            //La pagination
+            dom: 'Bfrtip',
+            buttons: [
+                'copy', 'csv', 'excel', 'pdf', 'print',
+                {
+                    extend: 'csvHtml5',
+                    fieldBoundary: " "
+                }
+            ],
+            //Appel du fichier locale de traduction
+            language: {
+                url: "../Datas/French.json"
+            }
+        });
+
+    });

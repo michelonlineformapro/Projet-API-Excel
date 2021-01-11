@@ -1,0 +1,29 @@
+ public function updateGames($title, $description, $image, $price, $stock, $post_date, $seller_id, $id){
+        $db = $this->dbConnect();
+        $query = "UPDATE games SET title = ?, description = ?, image = ?, price = ?, stock = ?, post_date = ?, seller_id = ? WHERE id = ?";
+        $req = $db->prepare($query);
+        $req->execute(array($title, $description, $image, $price, $stock, $post_date, $seller_id, $id));
+        $id = $req->fetch();
+        return $id;
+
+    }
+
+
+
+
+    /////////////////////////
+            $sql = "SELECT * from epreuve INNER JOIN participant ON participant.id = epreuve.id_participant INNER JOIN categories ON categories.id = epreuve.id_categorie INNER JOIN passage ON passage.id = epreuve.id_temps";
+
+
+
+                  $req = $db->query($sql);
+                    $req->bindParam(1, $getData[0]);
+                    $req->bindParam(2, $getData[1]);
+                    $req->bindParam(3, $getData[2]);
+                    $req->bindParam(4, $getData[3]);
+                    $req->bindParam(5, $getData[4]);
+                    $req->bindParam(6, $getData[5]);
+                    $req->bindParam(7, $getData[6]);
+                    $req->bindParam(8, $getData[7]);
+                    $req->bindParam(9, $getData[8]);
+                    $req->execute();
