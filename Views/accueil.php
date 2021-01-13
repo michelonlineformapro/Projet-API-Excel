@@ -6,18 +6,10 @@ $title = "SKI API ACCUEIL";
 
 <h1 class="title is-size-1 has-text-danger">Compétition de ski 2021</h1>
 <h2 class="title is-size-2 has-text-info">CREER UNE EPREUVE</h2>
-<form action="index.php?action=importer_xls" method="post" enctype="multipart/form-data">
-    <div class="field">
-        <label for="file" class="label">Nom de la station</label>
-        <div class="control">
-            <input class="input" type="file" name="file" id="file">
-        </div>
-    </div>
-    <button type="submit" name="import_file" class="button is-info">Importer un fichier</button>
-</form>
+<a href="index.php?action=creer_epreuve" class="button is-dark">Creer une compétition</a>
+<br /><br />
 
 
-<br />
 <div class="table-container">
     <table id="ski-table" class="table is-bordered is-striped is-narrow is-hoverable is-fullwidth">
         <thead>
@@ -36,10 +28,11 @@ $title = "SKI API ACCUEIL";
         <tbody>
             <?php
             foreach ($addSkiData as $datas){
+                $date_epreuve = date($datas['date_epreuve']);
                 ?>
             <tr>
                 <td><?= $datas['nom_station'] ?></td>
-                <td><?= $datas['date_epreuve'] ?></td>
+                <td><?= $date_epreuve ?></td>
                 <td><?= $datas['nom_participant'] ?></td>
                 <td><?= $datas['prenom_participant'] ?></td>
                 <td><?= $datas['date_naissance_participant'] ?></td>
@@ -58,6 +51,15 @@ $title = "SKI API ACCUEIL";
     <div class="field">
     <input type="submit" value="Exporter en Fichier Excel"  name="export_btn" class="button is-success">
     </div>
+</form>
+<form action="index.php?action=importer_xls" method="post" enctype="multipart/form-data">
+    <div class="field">
+        <label for="file" class="label">IMPORTER LES TEMPS</label>
+        <div class="control">
+            <input class="input" type="file" name="file" id="file">
+        </div>
+    </div>
+    <button type="submit" name="import_file" class="button is-info">Importer un fichier</button>
 </form>
 <?php
 $content = ob_get_clean();

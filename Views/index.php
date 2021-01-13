@@ -1,6 +1,6 @@
 <?php
 require "../Controllers/SkiController.php";
-
+ob_start();
 //Routing
 if(isset($_GET['action'])){
     if($_GET['action'] === "ski"){
@@ -14,7 +14,12 @@ if(isset($_GET['action'])){
     }elseif ($_GET['action'] === "exporter_xls"){
         exportAsExcelFile();
     }elseif ($_GET['action'] === "creer_epreuve"){
-
+        $title = "CREER COMPETITION";
+        getAllTheForeinDatas();
     }
 }
+
+$content = ob_get_clean();
+require "template.php";
+
 

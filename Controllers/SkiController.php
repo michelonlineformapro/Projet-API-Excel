@@ -20,4 +20,10 @@ function exportAsExcelFile(){
     require "../Views/export.php";
 }
 
+function getAllTheForeinDatas(){
+    $ski_model = new SkiModels();
+    $getDatas = $ski_model->getAllForeingnKeysDatas();
+    require "../Views/createCompetiton.php";
+}
+
 
